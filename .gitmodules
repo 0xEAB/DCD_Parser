@@ -1,0 +1,3 @@
+[submodule "D_Parser"]
+	path = D_Parser
+	url = https://github.com/aBothe/D_Parser.git
