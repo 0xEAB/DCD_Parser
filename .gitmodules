@@ -1,3 +1,9 @@
 [submodule "D_Parser"]
 	path = D_Parser
 	url = https://github.com/aBothe/D_Parser.git
+[submodule "em8.Core.CLI"]
+	path = CoE.em8.Core.CLI
+	url = https://github.com/call-of-etti/em8.Core.CLI.git
+[submodule "em8.Core"]
+	path = CoE.em8.Core
+	url = https://github.com/call-of-etti/em8.Core.git
