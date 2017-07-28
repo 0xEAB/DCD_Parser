@@ -52,5 +52,10 @@
       <Project>{0290A229-9AA1-41C3-B525-CAFB86D8BC42}</Project>
       <Name>DParser2</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CoE.em8.Core.CLI\source\CoE.em8.Core.CLI.csproj">
+      <Project>{464b9852-5935-43f8-9d13-a5b777854181}</Project>
+      <Name>CoE.em8.Core.CLI</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
 </Project>
