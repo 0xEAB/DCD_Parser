@@ -44,6 +44,7 @@
     <Compile Include="dcd\server\Server.cs" />
     <Compile Include="CLI\Program.cs" />
     <Compile Include="Platform\PlatformUtil.cs" />
+    <Compile Include="dsymbol\ModuleCache.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

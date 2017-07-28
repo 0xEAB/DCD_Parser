@@ -31,7 +31,10 @@ The D Completion Daemon is an auto-complete program for the D programming langua
 
 **License:** [GPLv3](LICENSE.DCD.txt)
 
-**Source:** <https://github.com/dlang-community/DCD>
+**Source:**
+
+- <https://github.com/dlang-community/DCD>
+- <https://github.com/dlang-community/dsymbol>
 
 
 ### D_Parser
