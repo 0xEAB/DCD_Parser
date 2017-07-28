@@ -1,34 +1,26 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 15
 VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCD_Parser", "DCD_Parser\DCD_Parser.csproj", "{BCD442F0-B5E2-4248-902C-C7D975683147}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DParser2", "D_Parser\DParser2\DParser2.csproj", "{0290A229-9AA1-41C3-B525-CAFB86D8BC42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoE.em8.Core", "CoE.em8.Core\source\CoE.em8.Core.csproj", "{9BE1E993-8B00-458D-9ABD-F095537B54B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoE.em8.Core.CLI", "CoE.em8.Core.CLI\source\CoE.em8.Core.CLI.csproj", "{464B9852-5935-43F8-9D13-A5B777854181}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-		Debug-Linux|Any CPU = Debug-Linux|Any CPU
-		Release|x86 = Release|x86
 		Debug|x86 = Debug|x86
+		Debug-Linux|Any CPU = Debug-Linux|Any CPU
 		Debug-Linux|x86 = Debug-Linux|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Debug|x86.ActiveCfg = Debug|x86
-		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Debug|x86.Build.0 = Debug|x86
-		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Debug-Linux|Any CPU.ActiveCfg = Debug-Linux|Any CPU
-		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Debug-Linux|Any CPU.Build.0 = Debug-Linux|Any CPU
-		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Debug-Linux|x86.ActiveCfg = Debug-Linux|x86
-		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Debug-Linux|x86.Build.0 = Debug-Linux|x86
-		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Release|x86.ActiveCfg = Release|x86
-		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Release|x86.Build.0 = Release|x86
 		{BCD442F0-B5E2-4248-902C-C7D975683147}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BCD442F0-B5E2-4248-902C-C7D975683147}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCD442F0-B5E2-4248-902C-C7D975683147}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -41,11 +33,82 @@ Global
 		{BCD442F0-B5E2-4248-902C-C7D975683147}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BCD442F0-B5E2-4248-902C-C7D975683147}.Release|x86.ActiveCfg = Release|Any CPU
 		{BCD442F0-B5E2-4248-902C-C7D975683147}.Release|x86.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		version = 
+		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Debug|x86.ActiveCfg = Debug|x86
+		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Debug|x86.Build.0 = Debug|x86
+		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Debug-Linux|Any CPU.ActiveCfg = Debug-Linux|Any CPU
+		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Debug-Linux|Any CPU.Build.0 = Debug-Linux|Any CPU
+		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Debug-Linux|x86.ActiveCfg = Debug-Linux|x86
+		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Debug-Linux|x86.Build.0 = Debug-Linux|x86
+		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Release|x86.ActiveCfg = Release|x86
+		{0290A229-9AA1-41C3-B525-CAFB86D8BC42}.Release|x86.Build.0 = Release|x86
+		{9BE1E993-8B00-458D-9ABD-F095537B54B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BE1E993-8B00-458D-9ABD-F095537B54B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BE1E993-8B00-458D-9ABD-F095537B54B5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9BE1E993-8B00-458D-9ABD-F095537B54B5}.Debug|x86.Build.0 = Debug|Any CPU
+		{9BE1E993-8B00-458D-9ABD-F095537B54B5}.Debug-Linux|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BE1E993-8B00-458D-9ABD-F095537B54B5}.Debug-Linux|Any CPU.Build.0 = Debug|Any CPU
+		{9BE1E993-8B00-458D-9ABD-F095537B54B5}.Debug-Linux|x86.ActiveCfg = Debug|Any CPU
+		{9BE1E993-8B00-458D-9ABD-F095537B54B5}.Debug-Linux|x86.Build.0 = Debug|Any CPU
+		{9BE1E993-8B00-458D-9ABD-F095537B54B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BE1E993-8B00-458D-9ABD-F095537B54B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BE1E993-8B00-458D-9ABD-F095537B54B5}.Release|x86.ActiveCfg = Release|Any CPU
+		{9BE1E993-8B00-458D-9ABD-F095537B54B5}.Release|x86.Build.0 = Release|Any CPU
+		{464B9852-5935-43F8-9D13-A5B777854181}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{464B9852-5935-43F8-9D13-A5B777854181}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{464B9852-5935-43F8-9D13-A5B777854181}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{464B9852-5935-43F8-9D13-A5B777854181}.Debug|x86.Build.0 = Debug|Any CPU
+		{464B9852-5935-43F8-9D13-A5B777854181}.Debug-Linux|Any CPU.ActiveCfg = Debug|Any CPU
+		{464B9852-5935-43F8-9D13-A5B777854181}.Debug-Linux|Any CPU.Build.0 = Debug|Any CPU
+		{464B9852-5935-43F8-9D13-A5B777854181}.Debug-Linux|x86.ActiveCfg = Debug|Any CPU
+		{464B9852-5935-43F8-9D13-A5B777854181}.Debug-Linux|x86.Build.0 = Debug|Any CPU
+		{464B9852-5935-43F8-9D13-A5B777854181}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{464B9852-5935-43F8-9D13-A5B777854181}.Release|Any CPU.Build.0 = Release|Any CPU
+		{464B9852-5935-43F8-9D13-A5B777854181}.Release|x86.ActiveCfg = Release|Any CPU
+		{464B9852-5935-43F8-9D13-A5B777854181}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.FileWidth = 120
+		$1.NoTabsAfterNonTabs = True
+		$1.inheritsSet = VisualStudio
+		$1.inheritsScope = text/plain
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.IndentSwitchBody = True
+		$2.IndentBlocksInsideExpressions = True
+		$2.AnonymousMethodBraceStyle = NextLine
+		$2.PropertyBraceStyle = NextLine
+		$2.PropertyGetBraceStyle = NextLine
+		$2.PropertySetBraceStyle = NextLine
+		$2.EventBraceStyle = NextLine
+		$2.EventAddBraceStyle = NextLine
+		$2.EventRemoveBraceStyle = NextLine
+		$2.StatementBraceStyle = NextLine
+		$2.ElseNewLinePlacement = NewLine
+		$2.CatchNewLinePlacement = NewLine
+		$2.FinallyNewLinePlacement = NewLine
+		$2.WhileNewLinePlacement = DoNotCare
+		$2.ArrayInitializerWrapping = DoNotChange
+		$2.ArrayInitializerBraceStyle = NextLine
+		$2.BeforeMethodDeclarationParentheses = False
+		$2.BeforeMethodCallParentheses = False
+		$2.BeforeConstructorDeclarationParentheses = False
+		$2.NewLineBeforeConstructorInitializerColon = NewLine
+		$2.NewLineAfterConstructorInitializerColon = SameLine
+		$2.BeforeDelegateDeclarationParentheses = False
+		$2.NewParentheses = False
+		$2.SpacesBeforeBrackets = False
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+		version = 
 	EndGlobalSection
 EndGlobal
