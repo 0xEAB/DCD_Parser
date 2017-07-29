@@ -33,12 +33,6 @@ namespace DCD_Parser.dcd.server
         public const string CONFIG_FILE_NAME = "dcd.conf";
 
         private static Regex envVarRegex = new Regex(@"\$\{([_a-zA-Z][_a-zA-Z 0-9]*)\}");
-        private static bool useXDG;
-
-        static Server()
-        {
-            useXDG = PlatformUtil.Unix;
-        }
 
         /// <summary>
         /// Locates the configuration file
@@ -46,7 +40,7 @@ namespace DCD_Parser.dcd.server
         /// <returns>The configuration location.</returns>
         public static string GetConfigurationLocation()
         {
-            if (useXDG)
+            if (PlatformUtil.Unix)
             {
                 string configDir = Environment.GetEnvironmentVariable("XDG_CONFIG_HOME");
                 if (configDir == null)
