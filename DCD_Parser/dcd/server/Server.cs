@@ -22,9 +22,10 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text.RegularExpressions;
+
+using CoE.em8.Core;
 using CoE.em8.Core.CLI;
 using DCD_Parser.dsymbol.modulecache;
-using DCD_Parser.Platform;
 
 namespace DCD_Parser.dcd.server
 {
@@ -40,7 +41,7 @@ namespace DCD_Parser.dcd.server
         /// <returns>The configuration location.</returns>
         public static string GetConfigurationLocation()
         {
-            if (PlatformUtil.Unix)
+            if (RuntimePlatform.IsUnix)
             {
                 string configDir = Environment.GetEnvironmentVariable("XDG_CONFIG_HOME");
                 if (configDir == null)
@@ -68,9 +69,9 @@ namespace DCD_Parser.dcd.server
         /// </summary>
         public static void WarnAboutOldConfigLocation()
         {
-            if (PlatformUtil.Unix)
+            if (RuntimePlatform.IsUnix)
             {
-                if (File.Exists(Path.Combine(PlatformUtil.UserHomeDirectory, ".config/dcd")))
+                if (File.Exists(Path.Combine(RuntimePlatform.UserHomeDirectory, ".config/dcd")))
                 {
                     ColorUtil.PrintWarning(
                         "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",

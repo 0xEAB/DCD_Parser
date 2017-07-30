@@ -18,13 +18,13 @@
 
 // Source: DCD/src/server/main.d
 
+using System;
+
+using CoE.em8.Core;
 using CoE.em8.Core.CLI;
 using CoE.em8.Core.CLI.CLArgs;
 using DCD_Parser.dcd.common;
 using DCD_Parser.dcd.common.Messages;
-using DCD_Parser.Platform;
-using System;
-using System.Collections.Generic;
 
 namespace DCD_Parser.dcd.server
 {
@@ -78,7 +78,7 @@ namespace DCD_Parser.dcd.server
                 acfg.Port = DCDCommonSocket.DEFAULT_PORT_NUMBER;
 
 
-            if (!PlatformUtil.Unix && acfg.SocketFile != null)
+            if (!RuntimePlatform.IsUnix && acfg.SocketFile != null)
             {
                 ColorUtil.PrintError(DCDCommonSocket.NOT_SUPPORTED_ON_WINDOWS);
                 return 1;

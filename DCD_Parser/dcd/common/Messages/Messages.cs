@@ -18,18 +18,14 @@
 
 // Source: DCD/src/common/messages.d
 
-using DCD_Parser.Platform;
-using Mono.Unix;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using MsgPack;
+
+using CoE.em8.Core;
+using Mono.Unix;
 using MsgPack.Serialization;
-using System.IO;
 
 namespace DCD_Parser.dcd.common.Messages
 {
@@ -124,7 +120,7 @@ namespace DCD_Parser.dcd.common.Messages
 
             Socket socket = null;
 
-            if (!PlatformUtil.Unix)
+            if (!RuntimePlatform.IsUnix)
                 useTCP = true;
 
             EndPoint endpoint;

@@ -18,13 +18,10 @@
 
 // Source: DCD/src/common/socket.d
 
-using DCD_Parser.Platform;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using CoE.em8.Core;
 
 namespace DCD_Parser.dcd.common
 {
@@ -35,11 +32,11 @@ namespace DCD_Parser.dcd.common
 
         public static string GenerateSocketName()
         {
-            if (PlatformUtil.Unix)
+            if (RuntimePlatform.IsUnix)
             {
                 string socketFileName = string.Format("dcd-{0}.socket", "getuid()");
 
-                if (PlatformUtil.Platform == PlatformID.MacOSX)
+                if (RuntimePlatform.PlatformID == PlatformID.MacOSX)
                     return Path.Combine("/", "var", "tmp", socketFileName);
                 else
                 {

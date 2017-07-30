@@ -1,10 +1,7 @@
-﻿using DCD_Parser.dcd.common;
-using DCD_Parser.Platform;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
+using CoE.em8.Core;
+using DCD_Parser.dcd.common;
 
 namespace DCD_Parser.dcd.server
 {
@@ -20,7 +17,7 @@ namespace DCD_Parser.dcd.server
 
         public DCDArgs()
         {
-            if (PlatformUtil.Unix)
+            if (RuntimePlatform.IsUnix)
             {
                 this.UseTCP = false;
                 this.SocketFile = DCDCommonSocket.GenerateSocketName();

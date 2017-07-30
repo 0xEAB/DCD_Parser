@@ -20,6 +20,7 @@
 
 using System;
 using System.IO;
+
 using CoE.em8.Core.CLI;
 
 namespace DCD_Parser.dsymbol.modulecache
