@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Reflection;
-using System.Diagnostics;
 using CoE.em8.Core.CLI.License;
 using CoE.em8.Core.CLI.License.GNU;
 

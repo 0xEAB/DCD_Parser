@@ -43,11 +43,19 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dcd\common\Messages\AutocompleteResponse.cs" />
+    <Compile Include="dcd\common\Messages\Messages.cs" />
+    <Compile Include="dcd\common\Messages\AutocompleteRequest.cs" />
+    <Compile Include="dcd\common\Messages\RequestKind.cs" />
+    <Compile Include="dcd\common\DCDCommonSocket.cs" />
+    <Compile Include="dcd\server\DCDArgs.cs" />
+    <Compile Include="Mono\Unix\UnixEndPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="dcd\server\Server.cs" />
     <Compile Include="CLI\Program.cs" />
     <Compile Include="Platform\PlatformUtil.cs" />
     <Compile Include="dsymbol\ModuleCache.cs" />
+    <Compile Include="dcd\server\Main.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
