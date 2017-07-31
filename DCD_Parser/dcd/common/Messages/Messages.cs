@@ -31,10 +31,9 @@ namespace DCD_Parser.dcd.common.Messages
 {
     static class Messages
     {
-        static SerializationContext msgpackCtx;
-        static MessagePackSerializer<AutocompleteRequest> msgpackReq;
-        static MessagePackSerializer<AutocompleteResponse> msgpackRsp;
-
+        public static readonly SerializationContext msgpackCtx;
+        public static readonly MessagePackSerializer<AutocompleteRequest> msgpackReq;
+        public static readonly MessagePackSerializer<AutocompleteResponse> msgpackRsp;
 
         static Messages()
         {
@@ -46,7 +45,6 @@ namespace DCD_Parser.dcd.common.Messages
             msgpackReq = msgpackCtx.GetSerializer<AutocompleteRequest>();
             msgpackRsp = msgpackCtx.GetSerializer<AutocompleteResponse>();
         }
-
 
         /// <returns>true on success</returns>
         public static bool SendRequest(Socket socket, AutocompleteRequest request)

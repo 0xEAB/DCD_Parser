@@ -25,11 +25,18 @@ using CoE.em8.Core.CLI;
 using CoE.em8.Core.CLI.CLArgs;
 using DCD_Parser.dcd.common;
 using DCD_Parser.dcd.common.Messages;
+using System.Diagnostics;
+using System.Net.Sockets;
+using System.IO;
+using System.Net;
+using Mono.Unix;
+using System.Collections.Generic;
 
 namespace DCD_Parser.dcd.server
 {
     public class Main
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("", "CS0164")]
         public static int Main_(string[] args)
         {
             var acfg = new DCDArgs();
@@ -90,13 +97,162 @@ namespace DCD_Parser.dcd.server
                 return 1;
             }
 
+            ColorUtil.PrintNotice("Starting up ...");
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
             if (!acfg.IgnoreConfig)
                 acfg.ImportPaths.AddRange(Server.LoadConfiguredImportDirs());
 
-            ColorUtil.PrintStatus("Starting up ...");
 
+            Socket socket;
+            if (acfg.UseTCP)
+            {
+                socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
+                {
+                    Blocking = true
+                };
+                socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
 
-            return 0;
+                socket.Bind(new IPEndPoint(IPAddress.Loopback, acfg.Port));
+                ColorUtil.PrintStatus("Listening on port " + acfg.Port);
+            }
+            else
+            {
+                if (!RuntimePlatform.IsUnix)
+
+                {
+                    ColorUtil.PrintError(DCDCommonSocket.NOT_SUPPORTED_ON_WINDOWS);
+                    return 1;
+                }
+                else
+                {
+                    socket = new Socket(AddressFamily.Unix, SocketType.Stream, ProtocolType.Tcp);
+                    if (File.Exists(acfg.SocketFile))
+                    {
+                        ColorUtil.PrintNotice("Cleaning up old socket file at " + acfg.SocketFile);
+                        File.Delete(acfg.SocketFile);
+                    }
+                    socket.Blocking = true;
+                    socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                    socket.Bind(new UnixEndPoint(acfg.SocketFile));
+                    //setAttributes(socketFile, S_IRUSR | S_IWUSR);
+                    ColorUtil.PrintStatus("Listening at" + acfg.SocketFile);
+                }
+            }
+
+            socket.Listen(32);
+
+            try
+            {
+                //ModuleCache cache = ModuleCache(new ASTAllocator);
+                //cache.addImportPaths(importPaths);
+                //infof("Import directories:\n    %-(%s\n    %)", cache.getImportPaths());
+
+                byte[] buffer = new byte[1024 * 1024 * 4]; // 4 megabytes should be enough for anybody...
+
+                sw.Stop();
+                //info(cache.symbolsAllocated, " symbols cached.");
+                ColorUtil.PrintNotice("Startup completed in " + sw.ElapsedMilliseconds + " milliseconds.");
+
+                serverLoop: while (true)
+                {
+                    var s = socket.Accept();
+                    s.Blocking = true;
+
+                    if (acfg.UseTCP)
+                    {
+                        // Only accept connections from localhost
+                        IPAddress clientAddr = ((IPEndPoint)s.RemoteEndPoint).Address;
+
+                        // Shut down if somebody tries connecting from outside
+                        if (!IPAddress.IsLoopback(clientAddr))
+                        {
+                            ColorUtil.PrintError("Connection attempted from " + clientAddr);
+                            return 1;
+                        }
+                    }
+
+                    try
+                    {
+                        int bytesReceived = s.Receive(buffer);
+
+                        var requestWatch = new Stopwatch();
+                        requestWatch.Start();
+
+                        int messageLength = BitConverter.ToInt32(buffer, 0);
+                        if (messageLength < 0)
+                        {
+                            ColorUtil.PrintError("Received header of too large package: " + (uint)messageLength + '/' + int.MaxValue + " bytes");
+                            return 1;
+                        }
+
+                        int packageLength = Convert.ToInt32(messageLength) + 4;
+
+                        List<byte> msgBuffer = new List<byte>(packageLength);
+
+                        for (int i = 4; i < packageLength; i++)
+                            msgBuffer.Add(buffer[i]);
+
+                        while (bytesReceived < packageLength)
+                        {
+                            int b = s.Receive(buffer);
+
+                            if (b < 0)
+                            {
+                                bytesReceived = (int)SocketError.SocketError;
+                                break;
+                            }
+                            else
+                            {
+                                for (int i = 0; i < b; i++)
+                                {
+                                    msgBuffer.Add(buffer[i]);
+                                    bytesReceived++;
+
+                                    if (bytesReceived == messageLength)
+                                        break;
+                                }
+                            }
+                        }
+
+                        if (bytesReceived < 0)
+                        {
+                            ColorUtil.PrintWarning("Socket recieve failed");
+                            break;
+                        }
+
+                        var message = new MemoryStream(msgBuffer.ToArray());
+                        AutocompleteRequest request = Messages.msgpackReq.Unpack(message);
+
+                        // TODO: ...
+
+                    }
+                    finally
+                    {
+                        if (s.Connected)
+                            s.Shutdown(SocketShutdown.Both);
+
+                        s.Close();
+                    }
+                }
+
+                return 0;
+            }
+            finally
+            {
+                ColorUtil.PrintNotice("Shutting down sockets...");
+
+                if (socket.Connected)
+                    socket.Shutdown(SocketShutdown.Both);
+
+                socket.Close();
+
+                if (!acfg.UseTCP)
+                    File.Delete(acfg.SocketFile);
+
+                ColorUtil.PrintStatus("Sockets shut down.");
+            }
         }
 
 
