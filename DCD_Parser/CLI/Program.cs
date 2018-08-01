@@ -11,7 +11,7 @@ namespace DCD_Parser.CLI
         public const string APP_VERSION_NUMBER = "0.1.0";
         public const string APP_VERSION_SUFFIX = "-alpha";
         public const string APP_VERSION_STRING = "v" + APP_VERSION_NUMBER + APP_VERSION_SUFFIX;
-        public const string APP_COPYRIGHT = "Copyright (C) 2017  0xEAB";
+        public const string APP_COPYRIGHT = "Copyright (C) 2017-2018  0xEAB";
 
         public static int Main(string[] args)
         {

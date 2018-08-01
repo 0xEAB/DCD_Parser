@@ -8,7 +8,7 @@
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY{ get; set; } without even the implied warranty of
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
@@ -19,6 +19,7 @@
 // Source: DCD/src/common/messages.d
 
 using MsgPack.Serialization;
+using System;
 
 namespace DCD_Parser.dcd.common.Messages
 {
@@ -27,59 +28,79 @@ namespace DCD_Parser.dcd.common.Messages
     /// </summary>
     public class AutocompleteResponse
     {
+        public class Completion
+        {
+            /// <summary
+            /// The name of the symbol for a completion, for calltips just the function name.
+            /// </summary>
+            [MessagePackMember(0)]
+            public string Identifier { get; set; }
+
+            /// <summary>
+            /// The kind of the item. Will be char.init for calltips.
+            /// </summary>
+            [MessagePackMember(1)]
+            public byte Kind { get; set; }
+
+            /// <summary>
+            /// Definition for a symbol for a completion including attributes or the arguments for calltips.
+            /// </summary>
+            [MessagePackMember(2)]
+            public string Definition { get; set; }
+
+            /// <summary>
+            /// The path to the file that contains the symbol.
+            /// </summary>
+            [MessagePackMember(3)]
+            public string SymbolFilePath { get; set; }
+
+            /// <summary>
+            /// The byte offset at which the symbol is located or symbol location for symbol searches.
+            /// </summary>
+            [MessagePackMember(4)]
+            public UIntPtr SymbolLocation { get; set; }
+
+            /// <summary>
+            /// Documentation associated with this symbol.
+            /// </summary>
+            [MessagePackMember(5)]
+            public string Documentation { get; set; }
+        }
+
         /// <summary>
         /// The autocompletion type. (Parameters or identifier)
         /// </summary>
         [MessagePackMember(0)]
-        public string CompletionType{ get; set; }
+        public string CompletionType { get; set; }
 
         /// <summary>
         /// The path to the file that contains the symbol.
         /// </summary>
         [MessagePackMember(1)]
-        public string SymbolFilePath{ get; set; }
+        public string SymbolFilePath { get; set; }
 
         /// <summary>
         /// The byte offset at which the symbol is located.
         /// </summary>
         [MessagePackMember(2)]
-        public uint SymbolLocation{ get; set; }
-
-        /// <summary>
-        /// The documentation comment
-        /// </summary>
-        [MessagePackMember(3)]
-        public string[] DocComments{ get; set; }
+        public uint SymbolLocation { get; set; }
 
         /// <summary>
         /// The completions
         /// </summary>
-        [MessagePackMember(4)]
-        public string[] Completions{ get; set; }
-
-        /// <summary>
-        /// The kinds of the items in the completions array. Will be empty if the
-        /// completion type is a function argument list.
-        /// </summary>
-        [MessagePackMember(5)]
-        public char[] CompletionKinds{ get; set; }
-
-        /// <summary>
-        /// Symbol locations for symbol searches.
-        /// </summary>
-        [MessagePackMember(6)]
-        public uint[] Locations{ get; set; }
+        [MessagePackMember(3)]
+        public Completion[] Completions { get; set; }
 
         /// <summary>
         /// Import paths that are registered by the server.
         /// </summary>
-        [MessagePackMember(7)]
-        public string[] ImportPaths{ get; set; }
+        [MessagePackMember(4)]
+        public string[] ImportPaths { get; set; }
 
         /// <summary>
         /// Symbol identifier
         /// </summary>
-        [MessagePackMember(8)]
-        public ulong SymbolIdentifier{ get; set; }
+        [MessagePackMember(5)]
+        public ulong SymbolIdentifier { get; set; }
     }
 }
