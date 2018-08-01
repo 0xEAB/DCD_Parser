@@ -39,9 +39,9 @@ namespace DCD_Parser.dcd.common.Messages
         {
             msgpackCtx = new SerializationContext()
             {
-                EnumSerializationMethod = EnumSerializationMethod.ByUnderlyingValue,
                 SerializationMethod = SerializationMethod.Array
             };
+            msgpackCtx.EnumSerializationOptions.SerializationMethod = EnumSerializationMethod.ByUnderlyingValue;
             msgpackReq = msgpackCtx.GetSerializer<AutocompleteRequest>();
             msgpackRsp = msgpackCtx.GetSerializer<AutocompleteResponse>();
         }
